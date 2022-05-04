@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加笔记</title>
+</head>
+<body>
+   <form action="/display_notes/add_notes/" method="post">
+       <p>
+           标题:<input type="text" name="title" ><input type="submit" value="保存">
+       </p>
+       <p>在下面输入笔记内容<br>
+           <textarea cols="30" role="10" name="content"></textarea>
+       </p>
+   </form>
+   {% for note in notes %}
+           <a href="/display_notes/del_allnotes/{{note.user_id}}/">删除所有日志记录</a>
+   {% endfor %}
+   <p>
+           历史笔记<br>
+       {% for note in notes %}
+           title: {{note.title}}------created_time: {{note.created_time}}------update_time: {{note.update_time}}<a href="/display_notes/del_notes/{{note.id}}">删除此条记录</a><br>
+           content: {{note.content}}<br><br>
+       {% endfor %}
+
+       </p>
+
+</body>
+</html>

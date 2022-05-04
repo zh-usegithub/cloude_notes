@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+<!--    <style>-->
+<!--        *{-->
+<!--         margin:0;-->
+<!--         padding:0;//}-->
+<!--        .div{-->
+<!--        width:300px;-->
+<!--        height:300px;-->
+<!--        text-align:center;}-->
+<!--    </style>-->
+</head>
+<body>
+  {% if request.session.username %}
+      <p>
+          欢迎{{request.session.username}}
+      </p>
+      <p>
+          <a href="/register_login/logout/">退出登录</a>
+      </p>
+      <p>
+          <a href="/display_notes/add_notes/">进入我的笔记</a>
+      </p>
+  {% else %}
+      {% if request.COOKIES.username %}
+        <p>
+              欢迎{{request.COOKIES.username}}
+          </p>
+        <p>
+              <a href="/register_login/logout/">退出登录</a>
+          </p>
+        <p>
+              <a href="">进入我的笔记</a>
+          </p>
+      {% else %}
+        <p>
+            <a href="/register_login/login">登录</a>
+        </p>
+        <p>
+            <a href="/register_login/register">注册</a>
+        </p>
+      {% endif %}
+  {% endif %}
+
+</body>
+</html>

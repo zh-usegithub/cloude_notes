@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加笔记</title>
+</head>
+<body>
+   当前登录用户：{{request.session.username}}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/register_login/logout/" >注销</a>
+   <form action="/display_notes/add_notes/" method="post">
+       <p>
+           标题:<input type="text" name="title" ><input type="submit" value="保存">
+       </p>
+       <p>在下面输入笔记内容<br>
+           <textarea cols="30" role="10" name="content"></textarea>
+       </p>
+   </form>
+           <a href="/display_notes/del_allnotes/">删除所有日志记录</a>
+   <p>
+           历史笔记<br>
+       {% for p in c_page %}
+           title: {{p.title}}------created_time: {{p.created_time}}------update_time: {{p.update_time}}<a href="/display_notes/del_notes/{{p.id}}">删除此条记录</a><br>
+           content: {{p.content}}<br><br>
+       {% endfor %}
+
+   </p>
+   {% if c_page.has_previous %}
+       <a href="/display_notes/add_notes/?page={{c_page.previous_page_number}}">上一页</a>
+   {% else %}
+      上一页
+
+   {% endif %}
+   {% for p_num in paginator.page_range %}
+      {% if p_num == c_page.number %}
+          {{ p_num }}
+      {% else %}
+          <a href="/display_notes/add_notes/?page={{ p_num }}">{{ p_num }}</a>
+      {% endif %}
+   {% endfor %}
+   {% if c_page.has_next %}
+      <a href="/display_notes/add_notes/?page={{c_page.next_page_number}}">下一页</a>
+   {% else %}
+      下一页
+   {% endif %}
+
+</body>
+</html>
