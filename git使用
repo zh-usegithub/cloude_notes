@@ -2,4 +2,6 @@ git init 项目初始化
 git clone 从远程克隆一个项目到本地
 git status 查看当前库状态
 git add 将文件添加到暂存区
-touch .gitignore 在linux下创建一个隐藏文件(这个文件中填写的内容在使用git status时会自动隐藏不显示)   显示使用ls -A
+touch .gitignore 在linux下创建一个隐藏文件(这个文件中填写的内容会自动隐藏不显示)   显示使用ls -A
+git commit -m 'first commit'  提交代码
+git remote add origin git@github.com:zh-usegithub/cloude_notes.git  推送代码至git@github.com:zh-usegithub/cloude_notes.git
